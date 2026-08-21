@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: xp-0821-guestbook-dev
+  annotations:
+    kargo.akuity.io/authorized-stage: "xp-0821-guestbook:dev"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/hanxiaop/guestbook.git
+    targetRevision: main
+    path: xp-0821/dev
+  destination:
+    name: xp-0821-cluster
+    namespace: xp-0821-dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

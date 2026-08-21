@@ -1,0 +1,12 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: guestbook
+  namespace: xp-0821-guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  shard: xp-0821-agent
+  subscriptions:
+    - image:
+        repoURL: ghcr.io/akuity/guestbook

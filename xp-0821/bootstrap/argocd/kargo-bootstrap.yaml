@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: xp-0821-kargo-bootstrap
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/hanxiaop/guestbook.git
+    targetRevision: main
+    path: xp-0821/bootstrap/kargo
+  destination:
+    name: xp-0821-kargo-ctl
+    namespace: xp-0821-guestbook
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 10
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
